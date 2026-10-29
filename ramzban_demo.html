@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>رمزبان | داشبورد تحلیل رمزارز</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c31;--panel2:#19243d;--text:#eef3ff;--muted:#9eacc8;--line:#2b3855;--green:#42d6a4;--red:#ff6d82;--gold:#f2c66d;--blue:#7ca8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#17284a,#0b1020 48%);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.7}
+header{padding:22px max(18px,calc((100% - 1120px)/2));border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:800}.logo span{color:var(--gold)}.sub{font-size:12px;color:var(--muted)}
+.wrap{max-width:1120px;margin:auto;padding:22px 18px 45px}.notice{background:#3c2d18;border:1px solid #80632b;color:#ffe5ad;border-radius:12px;padding:12px 15px;font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:linear-gradient(150deg,var(--panel),#11182b);border:1px solid var(--line);border-radius:16px;padding:17px;min-width:0}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-6{grid-column:span 6}.span-4{grid-column:span 4}
+h2{font-size:17px;margin:0 0 12px}h3{font-size:14px;margin:0 0 8px}.muted{color:var(--muted);font-size:12px}.big{font-size:27px;font-weight:800;letter-spacing:.2px}.positive{color:var(--green)}.negative{color:var(--red)}.gold{color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:right;padding:10px 7px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:500}tr:last-child td{border-bottom:0}
+.pill{display:inline-block;border-radius:999px;padding:3px 9px;font-size:11px;background:#263553;color:#dce7ff}.pill.up{background:#153c35;color:#8af0ca}.pill.down{background:#482633;color:#ffb2bf}
+.signal{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line)}.signal:last-child{border:0}.dot{width:10px;height:10px;border-radius:50%;margin-top:7px;flex-shrink:0;background:var(--gold)}.dot.up{background:var(--green)}.dot.down{background:var(--red)}
+label{display:block;color:var(--muted);font-size:12px;margin:8px 0 4px}input,select{width:100%;background:#0c1426;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:11px;font:inherit}
+button{border:0;border-radius:10px;padding:11px 15px;background:var(--blue);color:#081329;font-weight:800;cursor:pointer;font:inherit}button.secondary{background:#273651;color:var(--text);border:1px solid var(--line)}button.danger{background:#4a2430;color:#ffd8de}button:disabled{opacity:.5;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.smallprint{font-size:11px;color:var(--muted);margin-top:12px}.status{padding:10px;border-radius:10px;background:#101a2d;border:1px solid var(--line);font-size:12px;margin-top:10px}
+footer{padding-top:20px;color:var(--muted);font-size:11px;text-align:center}
+@media(max-width:760px){.span-8,.span-6,.span-4{grid-column:span 12}.big{font-size:23px}header{padding:18px}.wrap{padding:15px 12px 30px}table{font-size:12px}}
+</style>
+</head>
+<body>
+<header><div><div class="logo">رمز<span>بان</span></div><div class="sub">داشبورد پایش بازار و تحلیل آزمایشی رمزارز</div></div><span class="pill">نسخه نمایشی · بدون اتصال واقعی</span></header>
+<main class="wrap">
+<div class="notice"><b>مهم:</b> این نسخه نمایشی است؛ قیمت‌ها و سیگنال‌ها ساختگی‌اند و سفارش واقعی ثبت نمی‌شود. برای اتصال امن به والکس/تبدیل، به API رسمی و بک‌اند امن نیاز است. کلید API یا رمز صرافی را داخل این صفحه وارد نکنید.</div>
+<section class="grid">
+<div class="card span-4"><div class="muted">ارزش پرتفوی آزمایشی</div><div class="big" id="portfolio">۱۲۰,۰۰۰,۰۰۰ تومان</div><div class="muted">موجودی فرضی برای نمایش رابط کاربری</div></div>
+<div class="card span-4"><div class="muted">وضعیت بازار (نمونه)</div><div class="big gold">خنثی</div><div class="muted">برای تصمیم واقعی به داده زنده نیاز است</div></div>
+<div class="card span-4"><div class="muted">ریسک پیشنهادی هر معامله</div><div class="big">۱٪</div><div class="muted">تنظیم نمونه؛ توصیه سرمایه‌گذاری نیست</div></div>
+<div class="card span-8"><h2>بازارها</h2><table><thead><tr><th>دارایی</th><th>قیمت نمونه</th><th>تغییر ۲۴ساعته</th><th>وضعیت آزمایشی</th></tr></thead><tbody>
+<tr><td><b>BTC</b><div class="muted">بیت‌کوین</div></td><td>۳,۸۵۰,۰۰۰,۰۰۰ تومان</td><td class="positive">+۲.۴٪</td><td><span class="pill up">روند مثبت</span></td></tr>
+<tr><td><b>ETH</b><div class="muted">اتریوم</div></td><td>۱۴۸,۰۰۰,۰۰۰ تومان</td><td class="negative">−۰.۸٪</td><td><span class="pill">خنثی</span></td></tr>
+<tr><td><b>USDT</b><div class="muted">تتر</div></td><td>۱۰۲,۰۰۰ تومان</td><td class="positive">+۰.۲٪</td><td><span class="pill">پایش</span></td></tr>
+<tr><td><b>SOL</b><div class="muted">سولانا</div></td><td>۱۸,۹۰۰,۰۰۰ تومان</td><td class="positive">+۳.۱٪</td><td><span class="pill up">روند مثبت</span></td></tr>
+</tbody></table><div class="smallprint">تمام اعداد بالا نمونه و غیرواقعی‌اند؛ از آن‌ها برای معامله استفاده نکنید.</div></div>
+<div class="card span-4"><h2>سیگنال‌های نمونه</h2>
+<div class="signal"><span class="dot up"></span><div><b>BTC/IRT · بررسی روند</b><div class="muted">نمونه آموزشی: قیمت بالاتر از میانگین فرضی</div><span class="pill up">رصد، نه خرید</span></div></div>
+<div class="signal"><span class="dot"></span><div><b>ETH/IRT · انتظار</b><div class="muted">نمونه آموزشی: جهت نامشخص</div><span class="pill">بدون اقدام</span></div></div>
+<div class="signal"><span class="dot down"></span><div><b>SOL/IRT · احتیاط</b><div class="muted">نمونه آموزشی: نوسان بالا</div><span class="pill down">ریسک بالا</span></div></div>
+</div>
+<div class="card span-6"><h2>ثبت معامله آزمایشی</h2><div class="muted">فقط برای تمرین؛ هیچ سفارشی به صرافی ارسال نمی‌شود.</div>
+<div class="row"><div><label for="asset">دارایی</label><select id="asset"><option>BTC</option><option>ETH</option><option>USDT</option><option>SOL</option></select></div><div><label for="side">عملیات</label><select id="side"><option value="buy">خرید آزمایشی</option><option value="sell">فروش آزمایشی</option></select></div></div>
+<label for="amount">مبلغ (تومان)</label><input id="amount" type="number" min="1000" step="1000" value="1000000">
+<div class="actions"><button id="simulate">ثبت در دفتر آزمایشی</button><button class="secondary" id="clear">پاک کردن دفتر</button></div><div id="tradeStatus" class="status">آماده برای ثبت معامله آزمایشی.</div></div>
+<div class="card span-6"><h2>دفتر معاملات آزمایشی</h2><table><thead><tr><th>زمان</th><th>دارایی</th><th>عملیات</th><th>مبلغ</th></tr></thead><tbody id="trades"><tr><td colspan="4" class="muted">هنوز معامله آزمایشی ثبت نشده است.</td></tr></tbody></table></div>
+<div class="card span-12"><h2>برای تبدیل این نمونه به سامانه واقعی چه لازم است؟</h2>
+<div class="row"><div><h3>۱. اتصال امن صرافی</h3><div class="muted">بررسی مستندات API رسمی والکس یا تبدیل، کلید با حداقل دسترسی لازم، محدودیت IP و نگهداری کلید فقط در سرور. مجوز برداشت نباید فعال شود.</div></div><div><h3>۲. تحلیل قابل ارزیابی</h3><div class="muted">قیمت و حجم زنده، شاخص‌های تکنیکال، اخبار معتبر جهانی/منطقه‌ای، ثبت دلیل هر سیگنال، بک‌تست و آزمون آزمایشی قبل از هر معامله واقعی.</div></div></div>
+<div class="status">پیشنهاد ایمن: ابتدا فقط سیگنال و حساب آزمایشی؛ معامله خودکار فقط با سقف مبلغ، حد ضرر، توقف اضطراری و تأیید صریح شما.</div>
+<div class="actions"><button class="secondary" onclick="window.open('https://api-docs.wallex.ir/','_blank')">مستندات API والکس</button><button class="secondary" onclick="window.open('https://tabdeal.org/','_blank')">وب‌سایت تبدیل</button></div>
+</div>
+</section><footer>رمزبان · نمونه رابط کاربری برای توسعه بیشتر · هیچ تضمینی برای سود وجود ندارد.</footer>
+</main>
+<script>
+const fa=n=>Number(n).toLocaleString('fa-IR');
+let trades=[];
+document.getElementById('simulate').addEventListener('click',()=>{
+ const asset=document.getElementById('asset').value;
+ const side=document.getElementById('side').value;
+ const amount=Number(document.getElementById('amount').value);
+ const status=document.getElementById('tradeStatus');
+ if(!Number.isFinite(amount)||amount<1000){status.textContent='مبلغ باید حداقل ۱٬۰۰۰ تومان باشد.';return;}
+ trades.unshift({time:new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}),asset,side,amount});
+ render(); status.textContent='معامله فقط در دفتر آزمایشی ثبت شد؛ هیچ پولی جابه‌جا نشد.';
+});
+document.getElementById('clear').addEventListener('click',()=>{trades=[];render();document.getElementById('tradeStatus').textContent='دفتر آزمایشی پاک شد.';});
+function render(){const body=document.getElementById('trades');if(!trades.length){body.innerHTML='<tr><td colspan="4" class="muted">هنوز معامله آزمایشی ثبت نشده است.</td></tr>';return;}body.innerHTML=trades.map(t=>`<tr><td>${t.time}</td><td>${t.asset}</td><td class="${t.side==='buy'?'positive':'negative'}">${t.side==='buy'?'خرید آزمایشی':'فروش آزمایشی'}</td><td>${fa(t.amount)} تومان</td></tr>`).join('');}
+</script>
+</body></html>
