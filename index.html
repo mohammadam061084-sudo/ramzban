@@ -1,1 +1,154 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رمزبان | دستیار رمزارز</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1220;color:#eef4ff;font-family:Tahoma,Arial;line-height:1.8}
+header{padding:20px;background:#14233a;border-bottom:1px solid #30435d}
+h1{margin:0;color:#52e3b5}
+main{max-width:800px;margin:auto;padding:16px}
+.card{background:#142137;border:1px solid #2d405b;border-radius:15px;padding:18px;margin:14px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.muted{color:#a9b8ce;font-size:13px}
+.tag{color:#6be9c1}
+input,select,button{display:block;width:100%;padding:12px;margin-top:8px;border-radius:9px;border:1px solid #354966;background:#0b1628;color:white;font-size:15px}
+button{background:#48ddb2;color:#08251e;font-weight:bold;border:0;cursor:pointer}
+.notice{background:#30291b;color:#ffdf9b;padding:12px;border-radius:8px;font-size:13px}
+@media(max-width:500px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>◈ رمزبان</h1>
+<div class="muted">دستیار بررسی بازار رمزارزها</div>
+</header>
+<main>
+<section class="card">
+<span class="tag">نسخه نمایشی</span>
+<h2>خوش اومدی محمد!</h2>
+به رمزبان خوش آمدی؛ اینجا می‌تونی تحلیل‌های شخصی خودت رو ثبت کنی.
+<p class="notice">این نسخه به قیمت زنده یا صرافی متصل نیست. سیگنال واقعی یا معامله خودکار انجام نمی‌دهد.</p>
+</section>
+<div class="grid">
+<section class="card">
+<div class="muted">قیمت بازار</div>
+<strong>هنوز متصل نشده</strong>
+</section>
+<section class="card">
+<div class="muted">وضعیت صرافی</div>
+<strong>اتصال برقرار نیست</strong>
+</section>
+</div>
+<section class="card">
+<h3>ثبت تحلیل شخصی</h3>
+<label for="coin">نام ارز</label>
+<input id="coin" placeholder="مثلاً BTC">
+<label for="price">قیمت مورد بررسی (اختیاری)</label>
+<input id="price" type="number" placeholder="قیمت">
+<label for="decision">نظر تو</label>
+<select id="decision">
+<option>در حال بررسی</option>
+<option>بررسی خرید</option>
+<option>بررسی فروش</option>
+<option>فعلاً بدون معامله</option>
+</select>
+<label for="reason">دلیل تحلیل</label>
+<textarea id="reason" placeholder="دلیل تصمیم خودت را بنویس" rows="3"></textarea>
+<button onclick="saveAnalysis()">ذخیره تحلیل</button>
+<div id="status" class="muted"></div>
+</section>
+<section class="card">
+<h3>یادداشت‌های ذخیره‌شده</h3>
+<div id="notes">هنوز یادداشتی ثبت نشده است.</div>
+<button onclick="showNotes()">نمایش یادداشت‌ها</button>
+<button onclick="clearNotes()" style="background:#713d49;color:white">پاک‌کردن یادداشت‌ها</button>
+</section>
+</main>
+<footer class="muted" style="text-align:center;padding:20px">رمزبان · نسخه آزمایشی</footer>
+</body>
+</html>
+
+<script>
+function getNotes() {
+  try {
+    return JSON.parse(localStorage.getItem("ramzban_notes") || "[]");
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveAnalysis() {
+  const coin = document.getElementById("coin").value.trim();
+  const price = document.getElementById("price").value;
+  const decision = document.getElementById("decision").value;
+  const reason = document.getElementById("reason").value.trim();
+
+  if (!coin) {
+    document.getElementById("status").textContent =
+      "لطفاً نام ارز را وارد کن.";
+    return;
+  }
+
+  const notes = getNotes();
+  notes.unshift({
+    coin: coin,
+    price: price || "ثبت نشده",
+    decision: decision,
+    reason: reason || "بدون توضیح",
+    date: new Date().toLocaleString("fa-IR")
+  });
+
+  localStorage.setItem("ramzban_notes", JSON.stringify(notes));
+  document.getElementById("status").textContent =
+    "یادداشت با موفقیت ذخیره شد.";
+  showNotes();
+}
+
+function showNotes() {
+  const notes = getNotes();
+  const container = document.getElementById("notes");
+  container.replaceChildren();
+
+  if (notes.length === 0) {
+    container.textContent = "هنوز یادداشتی ثبت نشده است.";
+    return;
+  }
+
+  notes.forEach(function(note) {
+    const item = document.createElement("div");
+    item.className = "card";
+
+    const title = document.createElement("strong");
+    title.textContent = note.coin;
+    item.appendChild(title);
+
+    [ "قیمت: " + note.price,
+      "نظر: " + note.decision,
+      "توضیح: " + note.reason,
+      "زمان: " + note.date
+    ].forEach(function(line) {
+      const p = document.createElement("p");
+      p.textContent = line;
+      item.appendChild(p);
+    });
+
+    container.appendChild(item);
+  });
+}
+
+function clearNotes() {
+  if (confirm("آیا از پاک‌کردن همه یادداشت‌ها مطمئنی؟")) {
+    localStorage.removeItem("ramzban_notes");
+    showNotes();
+    document.getElementById("status").textContent =
+      "یادداشت‌ها پاک شدند.";
+  }
+}
+
+showNotes();
+  </script>
+  
